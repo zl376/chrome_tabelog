@@ -25,7 +25,7 @@ Scores are cached at multiple levels (extension + native host) to avoid repeated
 ### Setup
 
 ```bash
-git clone https://github.com/<user>/chrome_tabelog.git
+git clone https://github.com/zl376/chrome_tabelog.git
 cd chrome_tabelog
 bash install.sh
 ```
