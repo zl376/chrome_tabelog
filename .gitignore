@@ -1,0 +1,11 @@
+node_modules
+.venv
+.pw-profile/
+.debug.png
+.screenshot.png
+test_e2e.mjs
+test_page.html
+__pycache__/
+*.pyc
+com.tabelog.proxy.json
+native_host.sh

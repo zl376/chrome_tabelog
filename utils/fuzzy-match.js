@@ -26,7 +26,7 @@ function levenshtein(a, b) {
   if (n === 0) return m;
 
   let prev = Array.from({ length: n + 1 }, (_, i) => i);
-  const curr = new Array(n + 1);
+  let curr = new Array(n + 1);
 
   for (let i = 1; i <= m; i++) {
     curr[0] = i;

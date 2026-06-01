@@ -3,18 +3,24 @@
 // This is the single file to update when site markup changes.
 
 // --- Target site definitions for hover detection ---
-const SITE_CONFIG = {
+var SITE_CONFIG = {
   'www.tablecheck.com': {
     restaurantSelector: 'a[href*="/ja/"]',
     nameExtractor: (block) => {
-      const h5 = block.querySelector('h5');
-      if (h5) return h5.textContent.trim();
-      const h4 = block.querySelector('h4');
-      if (h4) return h4.textContent.trim();
-      const h3 = block.querySelector('h3');
-      if (h3) return h3.textContent.trim();
+      // Try heading elements first
+      for (const tag of ['h5', 'h4', 'h3', 'h2', 'h1']) {
+        const el = block.querySelector(tag);
+        if (el && el.textContent.trim().length >= 2) return el.textContent.trim();
+      }
+      // Try img alt
       const img = block.querySelector('img[alt]');
-      if (img) return img.alt.trim();
+      if (img && img.alt.trim().length >= 2) return img.alt.trim();
+      // Fallback: use own text content (styled-components often put name directly)
+      const text = block.textContent.trim();
+      // Filter out non-restaurant links (short text, navigation, etc.)
+      if (text && text.length >= 2 && text.length < 60 && !text.includes('>')) {
+        return text;
+      }
       return '';
     },
     areaExtractor: (block) => {
@@ -57,59 +63,29 @@ const SITE_CONFIG = {
 };
 
 // --- Tabelog search result parsing selectors ---
-const TABELOG_CONFIG = {
-  searchUrl: 'https://tabelog.com/rstLst/',
-  listingSelector: [
-    'li.list-rst',
-    '.rstlist-item',
-    '[class*="list-rst"]',
-    '.rstdtl-list__item'
-  ].join(', '),
-  nameSelector: [
-    'h3 a',
-    '.list-rst__name a',
-    '.rst-name a',
-    'a.rstlist-name'
-  ].join(', '),
-  scoreSelector: [
-    '.c-rating__score b',
-    '.list-rst__rating-score b',
-    '.rating-score b',
-    '.c-rating__score span',
-    'b.c-rating__score-val'
-  ].join(', '),
-  reviewCountSelector: [
-    '.list-rst__review-num a em',
-    '.review-count em',
-    '[class*="review"] em',
-    '.c-rvw__count em'
-  ].join(', '),
-  areaSelector: [
-    '.list-rst__area',
-    '.station-info',
-    '.list-rst__station',
-    '.rstinfo-area'
-  ].join(', '),
-  linkSelector: [
-    'h3 a',
-    '.list-rst__name a',
-    '.rstdtl-list__image a',
-    'a[href*="/A13"]'
-  ].join(', ')
+var TABELOG_CONFIG = {
+  searchUrl: 'https://tabelog.com/rst/rstsearch',
+  FETCH_TIMEOUT_MS: 15000,
+  listingSelector: 'div.list-rst',
+  nameSelector: 'a.list-rst__rst-name-target, a.cpy-rst-name',
+  scoreSelector: 'span.c-rating__val.list-rst__rating-val, span.c-rating__val--strong',
+  reviewCountSelector: 'em.list-rst__rvw-count-num, em.cpy-review-count',
+  areaSelector: 'div.list-rst__area-genre, div.cpy-area-genre',
+  linkSelector: 'a.list-rst__rst-name-target, a.cpy-rst-name'
 };
 
 // --- Cache TTL settings ---
-const CACHE_TTL = {
+var CACHE_TTL = {
   sessionMs: 6 * 60 * 60 * 1000,   // 6 hours
   localMs: 24 * 60 * 60 * 1000,    // 24 hours
   notFoundMs: 60 * 60 * 1000       // 1 hour for "not found"
 };
 
 // --- Matching ---
-const MATCH_THRESHOLD = 0.6;
+var MATCH_THRESHOLD = 0.6;
 
 // --- Rate limiting ---
-const RATE_LIMIT = {
+var RATE_LIMIT = {
   maxRequestsPerMinute: 10,
   minIntervalMs: 600
 };

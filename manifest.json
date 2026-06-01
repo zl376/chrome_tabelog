@@ -3,9 +3,9 @@
   "name": "Tabelog Score Viewer",
   "version": "1.0.0",
   "description": "Displays Tabelog ratings when hovering over restaurants on omakase.in and tablecheck.com",
-  "permissions": ["storage"],
+  "key": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqn5sheovvCkE+BiZprIO\nS0iGW13CoR648FMN47SMy8SayJkKzRqNS35jBe3o6kJ3foTUET0HQgd8AB1fvbuF\n4DQ+RK+EC+5d3zM1omle0ekGMwgslt8kZFzKQ3d28ESerZuzTrnC2PxhIiAbxQ2a\nnqHHAutqyUqGKV6qHvA39+gtIE7eD8rMvSRzWrZM6dvW6DuKi+t97uy0qWQ0ZA5G\nB9NsgcZSxs5GDEvuBwssUccVLKR3QIyFEb2wgFUHN6vh6Dhkz3DNixmuFA6n6pNK\nSc3zaDQYU3TzTwfRz5NoCzK4t77byRhWj7/Y1egMg8uBvJ4rRUcEY1VCy9f0fZNs\nTwIDAQAB\n-----END PUBLIC KEY-----",
+  "permissions": ["storage", "alarms", "nativeMessaging"],
   "host_permissions": [
-    "https://tabelog.com/*",
     "https://omakase.in/*",
     "https://www.tablecheck.com/*"
   ],

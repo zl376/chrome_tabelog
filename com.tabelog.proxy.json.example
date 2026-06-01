@@ -1,0 +1,9 @@
+{
+  "name": "com.tabelog.proxy",
+  "description": "Tabelog Score Viewer — Native Messaging Host",
+  "path": "NATIVE_HOST_DIR/native_host.sh",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://epolndhokcbmofckdckihhjblglefhmd/"
+  ]
+}
