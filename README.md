@@ -40,11 +40,4 @@ Then in Chrome:
 
 No server to run, no terminal to keep open. Chrome auto-launches the Python host on demand.
 
-## Configuration
-
-All site selectors and matching rules are in `config.js`. If a site changes its markup, only this file needs updating:
-
-- **`SITE_CONFIG`** — CSS selectors for finding restaurant blocks + name/location extraction functions
-- **`TABELOG_CONFIG`** — Selectors for parsing Tabelog search results
-
-For more details, see [TECHNICALS.md](doc/TECHNICALS.md).
+For configuration and technical details, see [TECHNICALS.md](doc/TECHNICALS.md).
