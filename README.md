@@ -17,10 +17,9 @@ Scores are cached at multiple levels (extension + native host) to avoid repeated
 
 ## Installation
 
-> **macOS only** for now. The native messaging host path uses `~/Library/Application Support/...` which is macOS-specific. Linux support would need a different manifest path.
-
 ### Prerequisites
 
+- **macOS only** (Linux/Windows not yet supported)
 - [Chrome](https://www.google.com/chrome/) (or any Chromium-based browser)
 - [Python 3](https://www.python.org/downloads/) (3.10+)
 
