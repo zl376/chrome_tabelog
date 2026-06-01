@@ -2,6 +2,8 @@
 
 Chrome extension that shows [Tabelog](https://tabelog.com) review scores when hovering over restaurant listings on supported sites.
 
+![demo](resource/demo.gif)
+
 ## Supported Sites
 
 - `https://omakase.in/*`
